@@ -1,0 +1,13 @@
+package com.msvendas;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MsVendasDiscoveryApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MsVendasDiscoveryApplication.class, args);
+	}
+
+}
