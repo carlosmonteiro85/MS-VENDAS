@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: gateway
+  # Habilitando o gateway para ligar os micros serviços 
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+  # para obter as urls em caixa baixa  
+          lower-case-service-id: true
+# porta de acesso           
+server:
+  port: 8080
+  
+eureka:
+  client:
+    fetch-registry: true 
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka
