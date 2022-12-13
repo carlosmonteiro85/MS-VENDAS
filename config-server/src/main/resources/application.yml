@@ -6,11 +6,7 @@
  
 server:
   port: 7000
-
-##### configuração para arquivo em repositório do git
-spring:
-  profiles:
-    active: native    
+spring:    
   cloud: 
     config:
       server:
