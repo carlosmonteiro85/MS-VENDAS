@@ -1,0 +1,29 @@
+# porta necessária para não dar conflito 
+# para verificar as informações http://localhost:7000/server/default
+# no cliente, deverá ser criado um arquivo bootstrap.yml esse arquivo
+# é responsavel em configurar antes que a aplicaçao suba
+# https://www.youtube.com/watch?v=YDsxEguf56o
+ 
+server:
+  port: 7000
+
+##### configuração para arquivo em repositório do git
+spring:
+  profiles:
+    active: native    
+  cloud: 
+    config:
+      server:
+        git:
+          uri: https://github.com/carlosmonteiro85/MS-VENDAS # url do repositorio onde se encontra as configurações das 
+          search-paths: configs # pasta da localização do arquivo
+          
+##### configuração para arquivo local na maquina
+#spring:
+#  profiles:
+#    active: native    
+#  cloud: 
+#    config:
+#      server:
+#        native:
+#          search-locations: /home/carlos-monteiro/desenvolvimento/MS-VENDAS #local do arquivo de configuração
