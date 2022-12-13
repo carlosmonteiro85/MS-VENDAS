@@ -1,0 +1,22 @@
+* nos clientes, adicionar a dependencia
+
+* Ativar com a anatoção '' no main
+
+* criar um arquivo na pasta resources chamado 'bootstrap.yml' que será responsavel de carregar as configurações
+antes do application.yml
+
+* arquivo bootstrap.yml
+
+# nome do config server
+spring:
+  application:
+    name: server
+# profile e local    
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:7000 
+      
+https://www.youtube.com/watch?v=YDsxEguf56o       
+
