@@ -1,20 +1,29 @@
-# porta necessária para não dar conflito 
-# para verificar as informações http://localhost:7000/server/default
-# no cliente, deverá ser criado um arquivo bootstrap.yml esse arquivo
-# é responsavel em configurar antes que a aplicaçao suba
-# https://www.youtube.com/watch?v=YDsxEguf56o
- 
 server:
   port: 7000
   
 spring: 
+  application:
+    name: config-server 
   cloud: 
     config:
       server:
         git:
           uri: https://github.com/carlosmonteiro85/repo-configs # url do repositorio onde se encontra as configurações das 
           search-paths: configs # pasta da localização do arquivo
+
+eureka:
+  client:
+    fetch-registry: true 
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka  
+  
           
+# porta necessária para não dar conflito 
+# para verificar as informações http://localhost:7000/server/default
+# no cliente, deverá ser criado um arquivo bootstrap.yml esse arquivo
+# é responsavel em configurar antes que a aplicaçao suba
+# https://www.youtube.com/watch?v=YDsxEguf56o
 ##### configuração para arquivo local na maquina
 #spring:
 #  profiles:
