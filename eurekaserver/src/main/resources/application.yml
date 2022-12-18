@@ -1,4 +1,3 @@
-# nome da aplicação, sera extremamete importante
 spring:
   application:
     name: eurekaserver
