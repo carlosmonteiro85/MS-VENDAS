@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.prototype.domain.exception.EntidadeDuplicadaException;
 import com.prototype.domain.exception.NegocioException;
+import com.prototype.domain.exception.NotFounEntityException;
 import com.prototype.domain.exception.ValidacaoException;
 
 import java.time.LocalDate;
@@ -48,6 +49,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleNegocio(NegocioException ex, WebRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ProblemTypeBean problemType = new ProblemTypeBean(ProblemType.ERRO_NEGOCIO, url);
+        String detail = ex.getMessage();
+
+        Problem problem = createProblemBuilder(status, problemType, detail)
+                .userMessage(detail)
+                .build();
+        return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+    }
+    
+    @ExceptionHandler(NotFounEntityException.class)
+    public ResponseEntity<?> handleNegocio(NotFounEntityException ex, WebRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ProblemTypeBean problemType = new ProblemTypeBean(ProblemType.RECURSO_NAO_ENCONTRADO, url);
         String detail = ex.getMessage();
 
         Problem problem = createProblemBuilder(status, problemType, detail)

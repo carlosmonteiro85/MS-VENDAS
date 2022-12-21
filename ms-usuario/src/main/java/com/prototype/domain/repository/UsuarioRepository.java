@@ -14,8 +14,8 @@ import com.prototype.domain.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 	
-	@Query(value = "select * from usuarios u where u.cpf = :cpf", nativeQuery = true)
-	Optional<Usuario> findByCpf(@Param("cpf")   String cpf);
+	@Query(value = "select u from Usuario u where u.cpf = :cpf")
+	Optional<Usuario> obterPorCpf(@Param("cpf") String cpf);
 	
 	@Query(value = "select u from Usuario u" )
 	Page<Usuario> findAll(Pageable page);

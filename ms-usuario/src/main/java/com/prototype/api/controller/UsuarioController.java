@@ -3,6 +3,7 @@ package com.prototype.api.controller;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,5 +36,10 @@ public class UsuarioController {
 	@PostMapping()
 	public ResponseEntity<UsuarioOutputDto> saveUser(@RequestBody UsuarioInputDto usuarioInput) {
 		return ResponseEntity.ok().body(service.save(usuarioInput));
-	}	
+	}
+	
+	@GetMapping("{cpf}")
+	public ResponseEntity<UsuarioOutputDto> getUsuario(@PathVariable String cpf  ) {
+		return ResponseEntity.ok().body(service.findByCpf(cpf));
+	}
 }

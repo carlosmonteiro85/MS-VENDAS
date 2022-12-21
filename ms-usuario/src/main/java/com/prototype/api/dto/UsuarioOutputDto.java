@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioOutputDto {
-	private Long id;
 	private String nome;
 	private String cpf;
 	private Endereco endereco;
