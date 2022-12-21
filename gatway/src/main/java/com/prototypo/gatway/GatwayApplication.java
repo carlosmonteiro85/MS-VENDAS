@@ -22,8 +22,7 @@ public class GatwayApplication {
 		return builder
 		       .routes()
 		      //configurando as urls para os loand balance e o serviço específico da url
-		      .route(r -> r.path("/usuarios/**").uri("lb://msusuarios")) // <url de acesso > e nome dado no application.yml do serviço
-		      .route(r -> r.path("/teste/**").uri("lb://ms-usuarios"))
+		      .route(r -> r.path("/usuarios/**").uri("lb://ms-usuarios"))
 		    .build();
 	}
 }

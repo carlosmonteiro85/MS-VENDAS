@@ -1,6 +1,6 @@
 package com.prototype.api.dto;
 
-import com.prototype.domain.model.Usuario;
+import com.prototype.domain.model.Endereco;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 public class UsuarioOutputDto {
 	private Long id;
 	private String nome;
+	private String cpf;
+	private Endereco endereco;
 	
-	public static  UsuarioOutputDto toDTO (Usuario usuario) {
-		return new UsuarioOutputDto(usuario.getId(), usuario.getNome());
-	}
 }
