@@ -1,4 +1,4 @@
-package com.prototype.domain.util;
+package com.prototype.domain.utils;
 
 public class AppConstants {
 	public static final String DEFAULT_NUMERO_PAGINA = "0";
