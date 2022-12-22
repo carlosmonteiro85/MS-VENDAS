@@ -1,13 +1,24 @@
 package com.prototype;
 
-import org.junit.jupiter.api.Test;
+import java.math.BigDecimal;
+import java.util.Locale;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.github.javafaker.Faker;
+import com.prototype.api.dto.ProdutoRequest;
+
 @SpringBootTest
-class MsProdutoApplicationTests {
+public class MsProdutoApplicationTests {
 
-	@Test
-	void contextLoads() {
+	protected static Faker faker = Faker.instance(new Locale("pt", "BR"));
+	
+	public ProdutoRequest criarProdutoParaTeste() {
+		return ProdutoRequest.builder()
+				.nome(faker.commerce().productName())
+				.descricao(faker.commerce().productName())
+				.preco(new BigDecimal(faker.commerce().price().replace(",", ".")))
+				.codigo(faker.commerce().promotionCode())
+			.build();
 	}
-
 }
