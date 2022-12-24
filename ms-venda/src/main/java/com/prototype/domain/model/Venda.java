@@ -18,14 +18,13 @@ import lombok.Data;
 @Entity
 @Data
 public class Venda {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToMany(mappedBy="itens", cascade = CascadeType.PERSIST)
+	@ManyToMany(mappedBy="itens", cascade = CascadeType.ALL)
 	private List<Item> itens = new ArrayList<>();
-	private BigDecimal subTotal;
-	private BigDecimal total;
+	private BigDecimal subTotal =  BigDecimal.ZERO;
+	private BigDecimal total = BigDecimal.ZERO;
 	private String numeroNf;
 	private StatusEnum status = StatusEnum.ABERTA;
 }

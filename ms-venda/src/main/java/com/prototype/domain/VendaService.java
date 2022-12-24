@@ -1,7 +1,7 @@
 package com.prototype.domain;
 
-import java.util.Iterator;
-import java.util.Objects;
+import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +10,14 @@ import org.springframework.stereotype.Service;
 import com.prototype.api.dto.ItemDto;
 import com.prototype.api.dto.ProdutoDto;
 import com.prototype.api.infra.ProdutoResource;
+import com.prototype.core.modelmapper.MapperConverter;
 import com.prototype.domain.exception.ErroComunicacaoException;
 import com.prototype.domain.exception.NegocioException;
 import com.prototype.domain.exception.NotFounEntityException;
 import com.prototype.domain.model.Item;
 import com.prototype.domain.model.Venda;
 import com.prototype.domain.model.enuns.StatusEnum;
+import com.prototype.domain.repository.VendasRepository;
 import com.prototype.domain.util.Utils;
 
 import feign.FeignException.FeignClientException;
@@ -24,73 +26,100 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class VendaService {
-	
+
 	private final ProdutoResource produtoResource;
+	private final VendasRepository vendaRepository;
+	private final MapperConverter mapper;
+
+	public Venda abrirVenda() {
+		return vendaRepository.save(new Venda());
+	} 
 	
-	// TODO abrir venda 
-	// TODO remover Item
-	// TODO efetuar pagamento
-	// TODO gerar nota
-	// TODO fechar venda
-	// TODO cancelar venda
+	public void cancelarVenda(Venda venda) {
+		// TODO Gerar nota cancelamento
+		venda.setStatus(StatusEnum.CANCELADA);
+		venda.getItens().clear();
+	}
 	
+	public void fecharVenda(Venda venda) {
+		// TODO obter Nota gerada
+		venda.setStatus(StatusEnum.FECHADA);
+	}
+	
+	public void gerarNotaVenda(Venda venda) {
+		// TODO obter dados frete
+		// TODO obter dados usuario
+		// TODO gerar arquivo xml
+		// TODO enviar dados venda em xml
+		venda.setStatus(StatusEnum.FECHADA);
+	}
+
 	public void removerItem(Venda venda, String codigoProduto) {
-		
-		validarStatusVenda(venda);	
-		
+		validarStatusVenda(venda);
 		Item itemRemover = null;
-		
-		for(int i = 0; venda.getItens().size() >= i; i++ ) {
-			
+		for (int i = 0; venda.getItens().size() >= i; i++) {
 			Item item = venda.getItens().get(i);
-			
 			if (item.getCodigoProduto().equals(codigoProduto)) {
 				itemRemover = item;
 				break;
 			}
-			if(Utils.isNull(itemRemover)) {
+			if (Utils.isNull(itemRemover)) {
 				throw new NotFounEntityException("Não existe um item com o codigo " + codigoProduto + " na lista");
 			}
-			
 			venda.getItens().remove(itemRemover);
 		}
+		somarTotal(venda);
+		vendaRepository.save(venda);
 	}
-	
+
 	public void adicionarItem(Venda venda, String codigoProduto, Integer quantidade) {
-		validarStatusVenda(venda);	
-		Item item = montarItem(codigoProduto, quantidade);
-		venda.getItens().add(item);
-		//TODO desenvolver
-		
-		venda.getItens().contains(item);
-		
-		for ( Item itemList : venda.getItens()) {
-			if(itemList.getCodigoProduto().equals(codigoProduto)) {
-				itemList.setQuantidade( itemList.getQuantidade() + item.getQuantidade());
+		validarStatusVenda(venda);
+		boolean naoPossueItem = verificarSePossueItem(venda.getItens(), codigoProduto, quantidade);
+		if (naoPossueItem) {
+			Item item = montarItem(codigoProduto, quantidade);
+			venda.getItens().add(item);
+		}
+		somarTotal(venda);
+		vendaRepository.save(venda);
+	}
+
+	private boolean verificarSePossueItem(List<Item> itens, String codigoProduto, int qtn) {
+		boolean naoPossueItem = true;
+		for (Item itemList : itens) {
+			if (itemList.getCodigoProduto().equals(codigoProduto)) {
+				int qt = itemList.getQuantidade() + qtn;
+				itemList.setQuantidade(qt < 0 ? 0 : qt);
+				naoPossueItem = false;
+				break;
 			}
 		}
-		
+		return naoPossueItem;
 	}
 
 	private void validarStatusVenda(Venda venda) {
-		if(!venda.getStatus().equals(StatusEnum.ABERTA) ) {
-			throw new NegocioException("Não é possivel adicionar ou remover item desta venda, pois o status esta " + venda.getStatus());
+		if (!venda.getStatus().equals(StatusEnum.ABERTA)) {
+			throw new NegocioException(
+					"Não é possivel adicionar ou remover item desta venda, pois o status esta " + venda.getStatus());
 		}
 	}
 
 	private Item montarItem(String codigoProduto, Integer quantidade) {
 		try {
 			ResponseEntity<ProdutoDto> dadosProduto = produtoResource.dadosProduto(codigoProduto);
-			return ItemDto.builder()
-						.produto(dadosProduto.getBody())
-						.quantidade(quantidade)
-						.build().toEntity();
+			return ItemDto.builder().produto(dadosProduto.getBody()).quantidade(quantidade).build().toEntity();
 
 		} catch (FeignClientException e) {
 			if (HttpStatus.NOT_FOUND.value() == e.status()) {
 				throw new NotFounEntityException("Não foi encontrado um produto com o código: " + codigoProduto);
 			}
 			throw new ErroComunicacaoException(e.getMessage() + String.valueOf(e.status()));
+		}
+	}
+	
+	private void somarTotal(Venda venda) {
+		for(Item item : venda.getItens()) {
+			BigDecimal t1 = item.getValorItem().multiply(new BigDecimal(item.getQuantidade()));
+			venda.getTotal().add(t1);
 		}
 	}
 }

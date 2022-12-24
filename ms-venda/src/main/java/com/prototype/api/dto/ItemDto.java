@@ -9,9 +9,7 @@ import lombok.Data;
 @Builder
 public class ItemDto {
 	private ProdutoDto produto;
-	private Integer quantidade;
-	
-	
+	private Integer quantidade;	
 	public Item toEntity() {
 		return new Item(produto.getCodigo(), produto.getNome(), quantidade, produto.getPreco());
 	}
