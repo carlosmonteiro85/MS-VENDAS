@@ -1,15 +1,25 @@
-server:
-  port: 7000
-  
 spring: 
   application:
-    name: config-server 
-  cloud: 
+    name: config-server
+  cloud:
     config:
       server:
         git:
-          uri: https://github.com/carlosmonteiro85/repo-configs # url do repositorio onde se encontra as configurações das 
-          search-paths: configs # pasta da localização do arquivo
+          uri: /home/carlos-monteiro/desenvolvimento/repo-configs  
+     
+server:
+  port: 7000
+     
+#spring: 
+#  application:
+#    name: config-server 
+#  cloud: 
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/carlosmonteiro85/repo-configs # url do repositorio onde se encontra as configurações das 
+#          search-paths: configs # pasta da localização do arquivo
+
 
 eureka:
   client:

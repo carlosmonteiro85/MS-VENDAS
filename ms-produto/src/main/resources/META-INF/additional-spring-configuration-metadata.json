@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "problemType.url",
-  "type": "java.lang.String",
-  "description": "A description for 'problemType.url'"
-}]}
+{"properties": [
+  {
+    "name": "problemType.url",
+    "type": "java.lang.String",
+    "description": "A description for 'problemType.url'"
+  },
+  {
+    "name": "ms-produtos.value",
+    "type": "java.lang.String",
+    "description": "A description for 'ms-produtos.value'"
+  }
+]}

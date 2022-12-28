@@ -1,0 +1,15 @@
+   
+version: '3'
+services:
+  db:
+    image: mysql
+    volumes:
+        - mysql-db:/home/carlos-monteiro/docker/mysql-container-test/8/volume 
+    environment:
+        MYSQL_ROOT_PASSWORD: "root"
+        MYSQL_DATABASE: "docker"
+    ports:
+        - "3306:3306"
+volumes:
+  mysql-db:    
+
