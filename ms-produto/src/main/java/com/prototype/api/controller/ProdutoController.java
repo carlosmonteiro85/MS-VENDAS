@@ -1,5 +1,6 @@
 package com.prototype.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prototype.api.dto.ProdutoRequest;
 import com.prototype.api.dto.ProdutoResponse;
+import com.prototype.core.modelmapper.Configuration;
 import com.prototype.domain.service.ProdutoService;
 import com.prototype.domain.utils.AppConstants;
 
@@ -41,5 +43,13 @@ public class ProdutoController {
 	public ResponseEntity<ProdutoResponse> findProdutoCodigo(@RequestParam("codigo") String codigo) {
 		return ResponseEntity.ok().body(service.findByCodigo(codigo));
 	}
+	
+	 @Autowired
+	    private Configuration configuration;
+
+	    @GetMapping("/endpoint")
+	    public String retrieveLimits(){
+	        return configuration.getValue();
+	    }
 
 }
