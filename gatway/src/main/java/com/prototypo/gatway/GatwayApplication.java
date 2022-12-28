@@ -24,6 +24,7 @@ public class GatwayApplication {
 		      //configurando as urls para os loand balance e o serviço específico da url
 		      .route(r -> r.path("/usuarios/**").uri("lb://ms-usuarios"))
 		      .route(r -> r.path("/produtos/**").uri("lb://ms-produtos"))
+		      .route(r -> r.path("/vendas/**").uri("lb://ms-vendas"))
 		    .build();
 	}
 }
