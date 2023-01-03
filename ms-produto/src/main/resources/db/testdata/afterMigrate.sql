@@ -1,3 +1,7 @@
+set foreign_key_checks = 0;
+
+delete from produtos;
+
 INSERT INTO produtos
 (codigo_barras, descricao, nome, preco)
 VALUES('123456789', 'Noot book Gamer com 16GB de ddr4, m2 de 500GB ', 'Nitro 5', 4000.0);

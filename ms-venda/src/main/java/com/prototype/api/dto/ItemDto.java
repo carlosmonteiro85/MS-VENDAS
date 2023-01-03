@@ -1,16 +1,13 @@
 package com.prototype.api.dto;
 
-import com.prototype.domain.model.Item;
-
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemDto {
 	private ProdutoDto produto;
 	private Integer quantidade;	
-	public Item toEntity() {
-		return new Item(produto.getCodigo(), produto.getNome(), quantidade, produto.getPreco());
-	}
 }

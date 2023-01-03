@@ -13,5 +13,4 @@ public class UsuarioOutputDto {
 	private String nome;
 	private String cpf;
 	private Endereco endereco;
-	
 }
