@@ -2,6 +2,7 @@ package com.prototype.domain.model.enuns;
 
 import lombok.Getter;
 
+
 public enum StatusEnum {
 	ABERTA(0), AGUARDANDO_FECHAMENTO(1), FECHADA(2), CANCELADA(3);
 
