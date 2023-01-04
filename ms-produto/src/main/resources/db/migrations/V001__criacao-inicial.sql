@@ -1,4 +1,4 @@
-CREATE TABLE `produtos`(
+CREATE TABLE `produtos` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `codigo_barras` varchar(255) DEFAULT NULL,
   `descricao` varchar(255) DEFAULT NULL,
