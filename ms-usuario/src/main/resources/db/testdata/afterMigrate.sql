@@ -1,3 +1,7 @@
+set foreign_key_checks = 0;
+
+delete from usuarios;
+
 INSERT INTO usuarios
 (cpf, bairro, cep, complemento, municipio, logradouro, numero, uf, nome)
 VALUES('12345678911', 'psul', '72231422', '', 'Ceilandia', 'Brasilia', '12', 'DF', 'Carlos H Monteiro');

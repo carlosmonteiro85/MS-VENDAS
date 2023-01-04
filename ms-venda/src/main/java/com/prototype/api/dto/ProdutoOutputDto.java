@@ -1,6 +1,6 @@
 package com.prototype.api.dto;
 
-import com.prototype.domain.model.Endereco;
+import java.math.BigDecimal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioOutputDto {
+public class ProdutoOutputDto {
 	private String nome;
-	private String cpf;
-	private Endereco endereco;
+	private BigDecimal preco;
+	private String codigo ;
 }
