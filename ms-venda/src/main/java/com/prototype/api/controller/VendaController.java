@@ -25,10 +25,17 @@ public class VendaController {
 	}
 	
 	@GetMapping(value = "add-item", params = {"idVenda", "codigoProduto", "quantidade" })
-	public ResponseEntity<VendaDTO> addVenda(
+	public ResponseEntity<VendaDTO> addIttem(
 			@RequestParam(value = "idVenda", required = true) Long idVenda,
 			@RequestParam(value = "codigoProduto", required = true) String codigoProduto,
 			@RequestParam(value = "quantidade", defaultValue = AppConstants.DEFAULT_QT) Integer quantidade){
 		return ResponseEntity.ok().body(service.adicionarItem(idVenda, codigoProduto, quantidade));
+	}
+	
+	@GetMapping(value = "remove-item", params = {"idVenda", "codigoProduto"})
+	public ResponseEntity<VendaDTO> removeItem(
+			@RequestParam(value = "idVenda", required = true) Long idVenda,
+			@RequestParam(value = "codigoProduto", required = true) String codigoProduto){
+		return ResponseEntity.ok().body(service.removerItem(idVenda, codigoProduto));
 	}
 }
