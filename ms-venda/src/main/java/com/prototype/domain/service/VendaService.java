@@ -15,6 +15,7 @@ import com.prototype.domain.exception.NotFounEntityException;
 import com.prototype.domain.model.Item;
 import com.prototype.domain.model.Venda;
 import com.prototype.domain.model.enuns.StatusEnum;
+import com.prototype.domain.repository.ItensRepository;
 import com.prototype.domain.repository.VendasRepository;
 import com.prototype.domain.util.Utils;
 
@@ -24,8 +25,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VendaService {
 
-	private final ProdutoService produtoService;
 	private final VendasRepository vendaRepository;
+	private final ItensRepository itensRepository;
+	private final ProdutoService produtoService;
 	private final ClienteService clienteService;
 	private final MapperConverter mapper;
 
@@ -103,6 +105,7 @@ public class VendaService {
 				somarTotal(venda);
 				
 				vendaRepository.save(venda);
+				itensRepository.delete(itemRemover);
 			}
 		}
 		
