@@ -150,4 +150,9 @@ public class VendaService {
 		}
 		venda.setTotal(total);
 	}
+	
+	public VendaDTO findById(Long idVenda) {
+		Venda venda = vendaRepository.findById(idVenda).orElseThrow(() -> new NotFounEntityException("Não foi encontrado uma venda com o codigo " + idVenda));
+		return mapper.entidadeToDto(venda, VendaDTO.class);
+	}
 }
