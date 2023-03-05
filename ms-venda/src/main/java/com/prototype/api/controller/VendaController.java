@@ -44,4 +44,10 @@ public class VendaController {
 	public ResponseEntity<VendaDTO> findById(@PathVariable("idVenda") Long idVenda){
 		return ResponseEntity.ok().body(service.findById(idVenda));
 	}
+	
+	@GetMapping("gerar-nf/{idVenda}")
+	public ResponseEntity<Void> gerarNf(@PathVariable("idVenda") Long idVenda){
+		service.gerarNotaVenda(idVenda);
+		return ResponseEntity.ok().build();
+	}
 }
