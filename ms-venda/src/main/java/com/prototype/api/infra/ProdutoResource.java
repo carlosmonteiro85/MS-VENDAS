@@ -9,7 +9,7 @@ import com.prototype.api.dto.ProdutoDto;
 
 @FeignClient(value = "ms-produtos", path = "/produtos")
 public interface ProdutoResource {
-	
-		@GetMapping(params = "codigo")
-		ResponseEntity<ProdutoDto> dadosProduto(@RequestParam("codigo") String codigo);
+
+	@GetMapping(params = "codigo")
+	ResponseEntity<ProdutoDto> dadosProduto(@RequestParam("codigo") String codigo);
 }

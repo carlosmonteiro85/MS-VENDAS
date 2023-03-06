@@ -1,0 +1,11 @@
+     
+spring:
+  application:
+    name: ms-pay
+  config:
+      import: optional:configserver:http://localhost:7000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

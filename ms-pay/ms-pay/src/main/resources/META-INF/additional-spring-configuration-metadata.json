@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "problemType.url",
+    "type": "java.lang.String",
+    "description": "A description for 'problemType.url'"
+  },
+  {
+    "name": "mq.queues.emissao-nf",
+    "type": "java.lang.String",
+    "description": "A description for 'mq.queues.emissao-nf'"
+  }
+]}

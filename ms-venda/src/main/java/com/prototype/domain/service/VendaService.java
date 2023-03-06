@@ -119,17 +119,23 @@ public class VendaService {
 		venda.getItens().clear();
 	}
 
-	public void fecharVenda(Venda venda) {
-		// TODO obter Nota gerada
+	public void fecharVenda(Long idVenda) {
+		Venda venda = findById2(idVenda);
 		venda.setStatus(StatusEnum.FECHADA);
+		venda.setNumeroNf(null);
 	}
 
-	public void gerarNotaVenda(Venda venda) {
+	public void gerarNotaVenda(Long idVenda) {
+		
 		// TODO obter dados frete
 		// TODO obter dados usuario
+		
+		Venda venda = findById2(idVenda);
 		// TODO gerar arquivo xml
 		// TODO enviar dados venda em xml
-		venda.setStatus(StatusEnum.FECHADA);
+		
+		venda.setStatus(StatusEnum.AGUARDANDO_FECHAMENTO);
+		vendaRepository.save(venda);
 	}
 
 	private void validarStatusVenda(Venda venda) {
@@ -149,5 +155,14 @@ public class VendaService {
 
 		}
 		venda.setTotal(total);
+	}
+	
+	public VendaDTO findById(Long idVenda) {
+		Venda venda = vendaRepository.findById(idVenda).orElseThrow(() -> new NotFounEntityException("Não foi encontrado uma venda com o codigo " + idVenda));
+		return mapper.entidadeToDto(venda, VendaDTO.class);
+	}
+	
+	public Venda findById2(Long idVenda) {
+		return vendaRepository.findById(idVenda).orElseThrow(() -> new NotFounEntityException("Não foi encontrado uma venda com o codigo " + idVenda));
 	}
 }
