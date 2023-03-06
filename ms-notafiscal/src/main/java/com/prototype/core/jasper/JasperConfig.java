@@ -1,4 +1,4 @@
-package com.prototype.core;
+package com.prototype.core.jasper;
 
 import java.io.InputStream;
 
