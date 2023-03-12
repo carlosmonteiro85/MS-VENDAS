@@ -4,17 +4,17 @@
 		<ide>
 			<cUF>35</cUF>
 			<cNF>518005127</cNF>
-			<natOp>Venda a vista</natOp>
-			<indPag>0</indPag>
-			<mod>55</mod>
+			<natOp>Venda a vista</natOp> <!-- natureza da operação -->
+			<indPag>0</indPag> 
+			<mod>55</mod> <!-- modelo-->
 			<serie>1</serie>
-			<nNF>1</nNF>
-			<dEmi>2008-05-06</dEmi>
-			<dSaiEnt>2008-05-06</dSaiEnt>
-			<tpNF>0</tpNF>
-			<cMunFG>3550308</cMunFG>
-			<tpImp>1</tpImp>
-			<tpEmis>1</tpEmis>
+			<nNF>1</nNF> <!-- numero nf -->
+			<dEmi>2008-05-06</dEmi> <!-- data emissão -->
+			<dSaiEnt>2008-05-06</dSaiEnt> <!-- data saida -->
+			<tpNF>0</tpNF> <!-- tipo nf -->
+			<cMunFG>3550308</cMunFG> 
+			<tpImp>1</tpImp> 
+			<tpEmis>1</tpEmis> 
 			<cDV>3</cDV>
 			<tpAmb>2</tpAmb>
 			<finNFe>1</finNFe>
@@ -42,6 +42,7 @@
 		</emit>
 		<dest>
 			<CNPJ>00000000000191</CNPJ>
+			<CPF>72997419115</CPF>
 			<xNome>DISTRIBUIDORA DE AGUAS MINERAIS</xNome>
 			<enderDest>
 				<xLgr>AV DAS FONTES</xLgr>

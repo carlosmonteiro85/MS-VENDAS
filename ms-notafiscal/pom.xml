@@ -89,6 +89,30 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+            <groupId>org.sonarsource.java</groupId>
+            <artifactId>java-checks-testkit</artifactId>
+            <version>6.9.0.23563</version>
+            <exclusions>
+                <exclusion>
+                    <!-- included in stdlib -->
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+		<dependency>
+            <groupId>org.sonarsource.java</groupId>
+            <artifactId>java-checks</artifactId>
+            <version>6.9.0.23563</version>
+            <exclusions>
+                <exclusion>
+                    <!-- included in stdlib -->
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

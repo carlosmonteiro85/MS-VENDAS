@@ -9,10 +9,10 @@ import lombok.Data;
 
 @Data
 public class DadosParaGeracaoDanfe {
-	private Emitente emitente;
+	private Long emitente;
 	private NaturezaOperaçãoEnun naturezaOperacao;
 	private LocalDateTime saida;
 	private Transportadora tranportadora;
-	private List<Long> itens;
+	private List<Long> produtos;
 	private String frase = ConstantsUtil.MSN_FRASE; 
 }

@@ -24,8 +24,8 @@ public class Danfe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Enumerated
-	private Emitente emitente;
+	@Column(name = "emitente")
+	private Long emitente;
 	
 	@Column(name = "natureza_operacao")
 	private NaturezaOperaçãoEnun naturezaOperacao;
